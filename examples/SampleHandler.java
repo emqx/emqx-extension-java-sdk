@@ -1,16 +1,16 @@
-import emqx.extension.java.handler.ActionOptionConfig;
-import emqx.extension.java.handler.ActionOptionConfig.Keys;
-import emqx.extension.java.handler.DefaultCommunicationHandler;
-import emqx.extension.java.handler.codec.ClientInfo;
-import emqx.extension.java.handler.codec.ConnInfo;
-import emqx.extension.java.handler.codec.Message;
-import emqx.extension.java.handler.codec.Property;
-import emqx.extension.java.handler.codec.PubSub;
-import emqx.extension.java.handler.codec.Reason;
-import emqx.extension.java.handler.codec.ReturnCode;
-import emqx.extension.java.handler.codec.SubscribeOption;
-import emqx.extension.java.handler.codec.Topic;
-import emqx.extension.java.handler.codec.TopicFilter;
+import io.emqx.extension.handler.ActionOptionConfig;
+import io.emqx.extension.handler.ActionOptionConfig.Keys;
+import io.emqx.extension.handler.DefaultCommunicationHandler;
+import io.emqx.extension.handler.codec.ClientInfo;
+import io.emqx.extension.handler.codec.ConnInfo;
+import io.emqx.extension.handler.codec.Message;
+import io.emqx.extension.handler.codec.Property;
+import io.emqx.extension.handler.codec.PubSub;
+import io.emqx.extension.handler.codec.Reason;
+import io.emqx.extension.handler.codec.ReturnCode;
+import io.emqx.extension.handler.codec.SubscribeOption;
+import io.emqx.extension.handler.codec.Topic;
+import io.emqx.extension.handler.codec.TopicFilter;
 
 public class SampleHandler extends DefaultCommunicationHandler {
 	
