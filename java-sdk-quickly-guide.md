@@ -8,7 +8,7 @@
 
 2. 在 IDE 中创建 Java 项目，将 `io.emqx.extension.jar` 及 `erlport.jar` 作为依赖引入该项目。
 
-下载依赖：[io.emqx.extension.jar & erlport.jar](https://github.com/emqx/emqx-extension-hook/blob/master/sdk/emqx-extension-java-sdk/rel/)
+下载依赖：[io.emqx.extension.jar](https://github.com/emqx/emqx-extension-java-sdk/releases) & [erlport.jar](https://github.com/emqx/emqx-extension-java-sdk/blob/master/deps/erlport-v1.1.1.jar)
 
 ## 示例
 
@@ -150,7 +150,7 @@ public class SampleHandler extends DefaultCommunicationHandler {
    | MESSAGE_ACKED_TOPICS     | message_acked     |
    | MESSAGE_DROPPED_TOPICS   | message_dropped   |
 
-2. 重载了 `on_<hook_name>` 方法，这些方法是实际处理钩子事件的回调函数，函数命名方式为各个钩子名称前加 `on_* 前缀。EMQ X 客户端产生的事件，例如：连接、发布、订阅等，
+2. 重载了 `on_<hook_name>` 方法，这些方法是实际处理钩子事件的回调函数，函数命名方式为各个钩子名称前加 `on_*` 前缀。EMQ X 客户端产生的事件，例如：连接、发布、订阅等，
    都会最终分发到这些钩子事件回调函数上，然后回调函数可对各属性及状态进行相关操作。
    示例程序中仅对各参数进行了打印输出。如果只关心部分钩子事件，只需对这部分钩子事件的回调函数进行重载即可，不需要重载所有回调函数。
 
