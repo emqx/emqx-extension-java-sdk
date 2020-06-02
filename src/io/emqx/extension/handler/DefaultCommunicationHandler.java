@@ -94,60 +94,60 @@ public class DefaultCommunicationHandler implements CommunicationHandler {
 	/* Raw callbacks start */
 	
 	// Clients
-    public void on_client_connect_raw(Object connInfoObj, Object propsObj, Object stateObj) {
+    public void onClientConnectRaw(Object connInfoObj, Object propsObj, Object stateObj) {
     		try {
     			ConnInfo connInfo = decoder.decode(ConnInfo.class, connInfoObj);
     			List<Property> props = decoder.decodeList(Property.class, propsObj);
         	
-        		on_client_connect(connInfo, props.toArray(new Property[props.size()]));
+        		onClientConnect(connInfo, props.toArray(new Property[props.size()]));
         		
     		} catch (InvalidParameterException e) {
     			e.printStackTrace(System.err);
     		}
     }
 
-    public void on_client_connack_raw(Object connInfoObj, Object rcObj, Object propsObj, Object stateObj) {
+    public void onClientConnackRaw(Object connInfoObj, Object rcObj, Object propsObj, Object stateObj) {
     		try {
 			ConnInfo connInfo = decoder.decode(ConnInfo.class, connInfoObj);
 			ReturnCode rc = decoder.decode(ReturnCode.class, rcObj);
 	    		List<Property> props = decoder.decodeList(Property.class, propsObj);
 	    	
-	    		on_client_connack(connInfo, rc, props.toArray(new Property[props.size()]));
+	    		onClientConnack(connInfo, rc, props.toArray(new Property[props.size()]));
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
 		}
     }
 
-    public void on_client_connected_raw(Object clientInfoObj, Object stateObj) {
+    public void onClientConnectedRaw(Object clientInfoObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 	    	
-	    		on_client_connected(clientInfo);
+	    		onClientConnected(clientInfo);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
 		}
     }
 
-    public void on_client_disconnected_raw(Object clientInfoObj, Object reasonObj, Object stateObj) {
+    public void onClientDisconnectedRaw(Object clientInfoObj, Object reasonObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 			Reason reason = decoder.decode(Reason.class, reasonObj);
 	    	
-	    		on_client_disconnected(clientInfo, reason);
+	    		onClientDisconnected(clientInfo, reason);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
 		}    	
     }
 
-    public Object on_client_authenticate_raw(Object clientInfoObj, Object authresultObj, Object stateObj) {
+    public Object onClientAuthenticateRaw(Object clientInfoObj, Object authresultObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo =decoder.decode(ClientInfo.class, clientInfoObj);
 			boolean authresult = (Boolean) authresultObj;
 	    	
-	    		boolean result = on_client_authenticate(clientInfo, authresult);
+	    		boolean result = onClientAuthenticate(clientInfo, authresult);
 	    		return Tuple.two(ResultCode.SUC.getValue(), result);
 	    		
 		} catch (InvalidParameterException e) {
@@ -156,14 +156,14 @@ public class DefaultCommunicationHandler implements CommunicationHandler {
 		}
     }
 
-    public Object on_client_check_acl_raw(Object clientInfoObj, Object pubsubObj, Object topicObj, Object resultObj, Object stateObj) {
+    public Object onClientCheckAclRaw(Object clientInfoObj, Object pubsubObj, Object topicObj, Object resultObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 			PubSub pubsub = decoder.decode(PubSub.class, pubsubObj);
 			Topic topic = decoder.decode(Topic.class, topicObj);
 			boolean rs = (Boolean) resultObj;
 	    	
-	    		boolean result = on_client_check_acl(clientInfo, pubsub, topic, rs);
+	    		boolean result = onClientCheckAcl(clientInfo, pubsub, topic, rs);
 	    		return Tuple.two(ResultCode.SUC.getValue(), result);
 	    		
 		} catch (InvalidParameterException e) {
@@ -172,13 +172,13 @@ public class DefaultCommunicationHandler implements CommunicationHandler {
 		}
     }
 
-    public void on_client_subscribe_raw(Object clientInfoObj, Object propsObj, Object topicObj, Object stateObj) {
+    public void onClientSubscribeRaw(Object clientInfoObj, Object propsObj, Object topicObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 			List<Property> props = decoder.decodeList(Property.class, propsObj);
 			List<TopicFilter> topicFilters = decoder.decodeList(TopicFilter.class, topicObj);
 	    	
-			on_client_subscribe(clientInfo, props.toArray(new Property[props.size()]), 
+			onClientSubscribe(clientInfo, props.toArray(new Property[props.size()]), 
 					topicFilters.toArray(new TopicFilter[topicFilters.size()]));
 	    		
 		} catch (InvalidParameterException e) {
@@ -186,13 +186,13 @@ public class DefaultCommunicationHandler implements CommunicationHandler {
 		}
     }
 
-    public void on_client_unsubscribe_raw(Object clientInfoObj, Object propsObj, Object topicObj, Object stateObj) {
+    public void onClientUnsubscribeRaw(Object clientInfoObj, Object propsObj, Object topicObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 			List<Property> props = decoder.decodeList(Property.class, propsObj);
 			List<TopicFilter> topicFilters = decoder.decodeList(TopicFilter.class, topicObj);
 	    	
-			on_client_unsubscribe(clientInfo, props.toArray(new Property[props.size()]), 
+			onClientUnsubscribe(clientInfo, props.toArray(new Property[props.size()]), 
 					topicFilters.toArray(new TopicFilter[topicFilters.size()]));
 	    		
 		} catch (InvalidParameterException e) {
@@ -201,81 +201,81 @@ public class DefaultCommunicationHandler implements CommunicationHandler {
     }
 
     // Sessions
-    public void on_session_created_raw(Object clientInfoObj, Object stateObj) {
+    public void onSessionCreatedRaw(Object clientInfoObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 	    	
-			on_session_created(clientInfo);
+			onSessionCreated(clientInfo);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
 		}
     }
 
-    public void on_session_subscribed_raw(Object clientInfoObj, Object topicObj, Object optsObj, Object stateObj) {
+    public void onSessionSubscribedRaw(Object clientInfoObj, Object topicObj, Object optsObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 			Topic topic = decoder.decode(Topic.class, topicObj);
 			SubscribeOption opts = decoder.decode(SubscribeOption.class, optsObj);
 	    	
-			on_session_subscribed(clientInfo, topic, opts);
+			onSessionSubscribed(clientInfo, topic, opts);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
 		}
     }
 
-    public void on_session_unsubscribed_raw(Object clientInfoObj, Object topicObj, Object stateObj) {
+    public void onSessionUnsubscribedRaw(Object clientInfoObj, Object topicObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 			Topic topic = decoder.decode(Topic.class, topicObj);
 	    	
-			on_session_unsubscribed(clientInfo, topic);
+			onSessionUnsubscribed(clientInfo, topic);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
 		}
     }
 
-    public void on_session_resumed_raw(Object clientInfoObj, Object stateObj) {
+    public void onSessionResumedRaw(Object clientInfoObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 	    	
-			on_session_resumed(clientInfo);
+			onSessionResumed(clientInfo);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
 		}
     }
 
-    public void on_session_discarded_raw(Object clientInfoObj, Object stateObj) {
+    public void onSessionDiscardedRaw(Object clientInfoObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 	    	
-			on_session_discarded(clientInfo);
+			onSessionDiscarded(clientInfo);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
 		}
     }
 
-    public void on_session_takeovered_raw(Object clientInfoObj, Object stateObj) {
+    public void onSessionTakeoveredRaw(Object clientInfoObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 	    	
-			on_session_takeovered(clientInfo);
+			onSessionTakeovered(clientInfo);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
 		}   	
     }
 
-    public void on_session_terminated_raw(Object clientInfoObj, Object reasonObj, Object stateObj) {
+    public void onSessionTerminatedRaw(Object clientInfoObj, Object reasonObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 			Reason reason = decoder.decode(Reason.class, reasonObj);
 	    	
-			on_session_terminated(clientInfo, reason);
+			onSessionTerminated(clientInfo, reason);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
@@ -283,11 +283,11 @@ public class DefaultCommunicationHandler implements CommunicationHandler {
     }
 
     // Messages
-    public Object on_message_publish_raw(Object messageObj, Object stateObj) {
+    public Object onMessagePublishRaw(Object messageObj, Object stateObj) {
 		try {
 			Message message = decoder.decode(Message.class, messageObj);
 	    	
-			Message result = on_message_publish(message);
+			Message result = onMessagePublish(message);
 			return result.encode(ResultCode.SUC);
 	    		
 		} catch (InvalidParameterException e) {
@@ -296,36 +296,36 @@ public class DefaultCommunicationHandler implements CommunicationHandler {
 		}   
     }
 
-    public void on_message_dropped_raw(Object messageObj, Object reasonObj, Object stateObj) {
+    public void onMessageDroppedRaw(Object messageObj, Object reasonObj, Object stateObj) {
 		try {
 			Message message = decoder.decode(Message.class, messageObj);
 			Reason reason = decoder.decode(Reason.class, reasonObj);
 	    	
-			on_message_dropped(message, reason);
+			onMessageDropped(message, reason);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
 		}  
     }
 
-    public void on_message_delivered_raw(Object clientInfoObj, Object messageObj, Object stateObj) {
+    public void onMessageDeliveredRaw(Object clientInfoObj, Object messageObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 			Message message = decoder.decode(Message.class, messageObj);
 	    	
-			on_message_delivered(clientInfo, message);
+			onMessageDelivered(clientInfo, message);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
 		} 
     }
 
-    public void on_message_acked_raw(Object clientInfoObj, Object messageObj, Object stateObj) {
+    public void onMessageAckedRaw(Object clientInfoObj, Object messageObj, Object stateObj) {
 		try {
 			ClientInfo clientInfo = decoder.decode(ClientInfo.class, clientInfoObj);
 			Message message = decoder.decode(Message.class, messageObj);
 	    	
-			on_message_acked(clientInfo, message);
+			onMessageAcked(clientInfo, message);
 	    		
 		} catch (InvalidParameterException e) {
 			e.printStackTrace(System.err);
@@ -334,77 +334,178 @@ public class DefaultCommunicationHandler implements CommunicationHandler {
 	
     /* Raw callbacks end */
     
-    /* Overriden callbacks start */
+    /* Deprecated overriden callbacks start */
 	
 	// Clients
+    @Deprecated
     public void on_client_connect(ConnInfo connInfo, Property[] props) {
     }
 
+    @Deprecated
     public void on_client_connack(ConnInfo connInfo, ReturnCode rc, Property[] props) {
     }
 
+    @Deprecated
     public void on_client_connected(ClientInfo clientInfo) {
     }
 
+    @Deprecated
     public void on_client_disconnected(ClientInfo clientInfo, Reason reason) {
     }
 
+    @Deprecated
     public boolean on_client_authenticate(ClientInfo clientInfo, boolean authresult) {
         return true;
     }
 
+    @Deprecated
     public boolean on_client_check_acl(ClientInfo clientInfo, PubSub pubsub, Topic topic, boolean result) {
         return true;
     }
 
+    @Deprecated
     public void on_client_subscribe(ClientInfo clientInfo, Property[] props, TopicFilter[] topic) {
     }
 
+    @Deprecated
     public void on_client_unsubscribe(ClientInfo clientInfo, Property[] props, TopicFilter[] topic) {
     }
 
     // Sessions
+    @Deprecated
     public void on_session_created(ClientInfo clientInfo) {
     }
 
+    @Deprecated
     public void on_session_subscribed(ClientInfo clientInfo, Topic topic, SubscribeOption opts) {
     }
 
+    @Deprecated
     public void on_session_unsubscribed(ClientInfo clientInfo, Topic topic) {
     }
 
+    @Deprecated
     public void on_session_resumed(ClientInfo clientInfo) {
     }
 
+    @Deprecated
     public void on_session_discarded(ClientInfo clientInfo) {
     }
 
+    @Deprecated
     public void on_session_takeovered(ClientInfo clientInfo) {
     }
 
+    @Deprecated
     public void on_session_terminated(ClientInfo clientInfo, Reason reason) {
     }
 
     // Messages
+    @Deprecated
     public Message on_message_publish(Message message) {
         return message;
     }
 
+    @Deprecated
     public void on_message_dropped(Message message, Reason reason) {
     }
 
+    @Deprecated
     public void on_message_delivered(ClientInfo clientInfo, Message message) {
     }
 
+    @Deprecated
     public void on_message_acked(ClientInfo clientInfo, Message message) {
     }	
 	
-    /* Overriden callbacks end */
+    /* Deprecated overriden callbacks end */
+    
+    /* Active overriden callbacks start */
+    // Clients
+    public void onClientConnect(ConnInfo connInfo, Property[] props) {
+    		on_client_connect(connInfo, props);
+    }
+
+    public void onClientConnack(ConnInfo connInfo, ReturnCode rc, Property[] props) {
+    		on_client_connack(connInfo, rc, props);
+    }
+
+    public void onClientConnected(ClientInfo clientInfo) {
+    		on_client_connected(clientInfo);
+    }
+
+    public void onClientDisconnected(ClientInfo clientInfo, Reason reason) {
+    		on_client_disconnected(clientInfo, reason);
+    }
+
+    public boolean onClientAuthenticate(ClientInfo clientInfo, boolean authresult) {
+        return on_client_authenticate(clientInfo, authresult);
+    }
+
+    public boolean onClientCheckAcl(ClientInfo clientInfo, PubSub pubsub, Topic topic, boolean result) {
+        return on_client_check_acl(clientInfo, pubsub, topic, result);
+    }
+
+    public void onClientSubscribe(ClientInfo clientInfo, Property[] props, TopicFilter[] topic) {
+    		on_client_subscribe(clientInfo, props, topic);
+    }
+
+    public void onClientUnsubscribe(ClientInfo clientInfo, Property[] props, TopicFilter[] topic) {
+    		on_client_unsubscribe(clientInfo, props, topic);
+    }
+
+    // Sessions
+    public void onSessionCreated(ClientInfo clientInfo) {
+    		on_session_created(clientInfo);
+    }
+
+    public void onSessionSubscribed(ClientInfo clientInfo, Topic topic, SubscribeOption opts) {
+    		on_session_subscribed(clientInfo, topic, opts);
+    }
+
+    public void onSessionUnsubscribed(ClientInfo clientInfo, Topic topic) {
+    		on_session_unsubscribed(clientInfo, topic);
+    }
+
+    public void onSessionResumed(ClientInfo clientInfo) {
+    		on_session_resumed(clientInfo);
+    }
+
+    public void onSessionDiscarded(ClientInfo clientInfo) {
+    		on_session_discarded(clientInfo);
+    }
+
+    public void onSessionTakeovered(ClientInfo clientInfo) {
+    		on_session_takeovered(clientInfo);
+    }
+
+    public void onSessionTerminated(ClientInfo clientInfo, Reason reason) {
+    		on_session_terminated(clientInfo, reason);
+    }
+
+    // Messages
+    public Message onMessagePublish(Message message) {
+        return on_message_publish(message);
+    }
+
+    public void onMessageDropped(Message message, Reason reason) {
+    		on_message_dropped(message, reason);
+    }
+
+    public void onMessageDelivered(ClientInfo clientInfo, Message message) {
+    		on_message_delivered(clientInfo, message);
+    }
+
+    public void onMessageAcked(ClientInfo clientInfo, Message message) {
+    		on_message_acked(clientInfo, message);
+    }	
+	
+    /* Active overriden callbacks end */
     
 	private HookSpec addHookSpec(List<HookSpec> actions, String module, String hookName, ActionOption... actionOpts) {
 
-		String function = "on_" + hookName;
-		String cb = function + "_raw";
+		String function = "on" + toCamelCase(hookName);
+		String cb = function + "Raw";
 
 		//only add those callback functions which are actually declared in the sub class
 		if (!declaredMethods.contains(function)) {
@@ -417,6 +518,17 @@ public class DefaultCommunicationHandler implements CommunicationHandler {
 		HookSpec hookSpec = new HookSpec(hookName, module, cb, actionOpts);
 		actions.add(hookSpec);
 		return hookSpec;
+	}
+	
+	private String toCamelCase(String hookName) {
+		String[] segs = hookName.split("_");
+		StringBuilder sb = new StringBuilder();
+		for (String seg : segs) {
+			char first = (char) (seg.charAt(0) - 32);
+			seg = String.valueOf(first) + seg.substring(1);
+			sb.append(seg);
+		}
+		return sb.toString();
 	}
 }
 	
