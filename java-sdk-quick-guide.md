@@ -150,7 +150,7 @@ public class SampleHandler extends DefaultCommunicationHandler {
    | MESSAGE_ACKED_TOPICS     | message_acked     |
    | MESSAGE_DROPPED_TOPICS   | message_dropped   |
 
-2. 重载了 `on<hookName>` 方法，这些方法是实际处理钩子事件的回调函数，函数命名方式为各个钩子名称变体后前面加 `on` 前缀，变体方式为钩子名称去掉下划线后使用小骆驼拼写法，例如，钩子client_connect对应的函数名为onClientConnect。
+2. 重载了 `on<hookName>` 方法，这些方法是实际处理钩子事件的回调函数，函数命名方式为各个钩子名称变体后前面加 `on` 前缀，变体方式为钩子名称去掉下划线后使用骆驼拼写法（CamelCase），例如，钩子client_connect对应的函数名为onClientConnect。
    EMQ X 客户端产生的事件，例如：连接、发布、订阅等，都会最终分发到这些钩子事件回调函数上，然后回调函数可对各属性及状态进行相关操作。
    示例程序中仅对各参数进行了打印输出。如果只关心部分钩子事件，只需对这部分钩子事件的回调函数进行重载即可，不需要重载所有回调函数。
 
@@ -199,4 +199,4 @@ public interface CommunicationHandler {
 
 ## 特别说明
 
-标准输入输出流System.out和System.in用于EMQ X系统内部的交互，请不要在扩展程序中使用。目前可以使用System.err进行控制台打印。
+标准输入输出流System.in和System.out用于EMQ X系统内部的交互，请不要在扩展程序中使用。目前可以使用System.err进行控制台打印。
