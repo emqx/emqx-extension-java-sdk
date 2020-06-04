@@ -27,106 +27,106 @@ public class SampleHandler extends DefaultCommunicationHandler {
 	
 	// Clients
 	@Override
-    public void on_client_connect(ConnInfo connInfo, Property[] props) {
-        System.err.printf("[Java] on_client_connect: connInfo: %s, props: %s\n", connInfo, props);
+    public void onClientConnect(ConnInfo connInfo, Property[] props) {
+        System.err.printf("[Java] onClientConnect: connInfo: %s, props: %s\n", connInfo, props);
+    }
+	
+	@Override
+    public void onClientConnack(ConnInfo connInfo, ReturnCode rc, Property[] props) {
+        System.err.printf("[Java] onClientConnack: connInfo: %s, rc: %s, props: %s\n", connInfo, rc, props);
     }
 
 	@Override
-    public void on_client_connack(ConnInfo connInfo, ReturnCode rc, Property[] props) {
-        System.err.printf("[Java] on_client_connack: connInfo: %s, rc: %s, props: %s\n", connInfo, rc, props);
+    public void onClientConnected(ClientInfo clientInfo) {
+        System.err.printf("[Java] onClientConnected: clientinfo: %s\n", clientInfo);
     }
 
 	@Override
-    public void on_client_connected(ClientInfo clientInfo) {
-        System.err.printf("[Java] on_client_connected: clientinfo: %s\n", clientInfo);
+    public void onClientDisconnected(ClientInfo clientInfo, Reason reason) {
+        System.err.printf("[Java] onClientDisconnected: clientinfo: %s, reason: %s\n", clientInfo, reason);
     }
 
 	@Override
-    public void on_client_disconnected(ClientInfo clientInfo, Reason reason) {
-        System.err.printf("[Java] on_client_disconnected: clientinfo: %s, reason: %s\n", clientInfo, reason);
-    }
-
-	@Override
-    public boolean on_client_authenticate(ClientInfo clientInfo, boolean authresult) {
-        System.err.printf("[Java] on_client_authenticate: clientinfo: %s, authresult: %s\n", clientInfo, authresult);
+    public boolean onClientAuthenticate(ClientInfo clientInfo, boolean authresult) {
+        System.err.printf("[Java] onClientAuthenticate: clientinfo: %s, authresult: %s\n", clientInfo, authresult);
 
         return true;
     }
 
 	@Override
-    public boolean on_client_check_acl(ClientInfo clientInfo, PubSub pubsub, Topic topic, boolean result) {
-        System.err.printf("[Java] on_client_check_acl: clientinfo: %s, pubsub: %s, topic: %s, result: %s\n", clientInfo, pubsub, topic, result);
+    public boolean onClientCheckAcl(ClientInfo clientInfo, PubSub pubsub, Topic topic, boolean result) {
+        System.err.printf("[Java] onClientCheckAcl: clientinfo: %s, pubsub: %s, topic: %s, result: %s\n", clientInfo, pubsub, topic, result);
 
         return true;
     }
 
 	@Override
-    public void on_client_subscribe(ClientInfo clientInfo, Property[] props, TopicFilter[] topic) {
-        System.err.printf("[Java] on_client_subscribe: clientinfo: %s, topic: %s, props: %s\n", clientInfo, topic, props);
+    public void onClientSubscribe(ClientInfo clientInfo, Property[] props, TopicFilter[] topic) {
+        System.err.printf("[Java] onClientSubscribe: clientinfo: %s, topic: %s, props: %s\n", clientInfo, topic, props);
     }
 
 	@Override
-    public void on_client_unsubscribe(ClientInfo clientInfo, Property[] props, TopicFilter[] topic) {
-        System.err.printf("[Java] on_client_unsubscribe: clientinfo: %s, topic: %s, props: %s\n", clientInfo, topic, props);
+    public void onClientUnsubscribe(ClientInfo clientInfo, Property[] props, TopicFilter[] topic) {
+        System.err.printf("[Java] onClientUnsubscribe: clientinfo: %s, topic: %s, props: %s\n", clientInfo, topic, props);
     }
 
     // Sessions
 	@Override
-    public void on_session_created(ClientInfo clientInfo) {
-        System.err.printf("[Java] on_session_created: clientinfo: %s\n", clientInfo);
+    public void onSessionCreated(ClientInfo clientInfo) {
+        System.err.printf("[Java] onSessionCreated: clientinfo: %s\n", clientInfo);
     }
 
 	@Override
-    public void on_session_subscribed(ClientInfo clientInfo, Topic topic, SubscribeOption opts) {
-        System.err.printf("[Java] on_session_subscribed: clientinfo: %s, topic: %s\n", clientInfo, topic);
+    public void onSessionSubscribed(ClientInfo clientInfo, Topic topic, SubscribeOption opts) {
+        System.err.printf("[Java] onSessionSubscribed: clientinfo: %s, topic: %s\n", clientInfo, topic);
     }
 
 	@Override
-    public void on_session_unsubscribed(ClientInfo clientInfo, Topic topic) {
-        System.err.printf("[Java] on_session_unsubscribed: clientinfo: %s, topic: %s\n", clientInfo, topic);
+    public void onSessionUnsubscribed(ClientInfo clientInfo, Topic topic) {
+        System.err.printf("[Java] onSessionUnsubscribed: clientinfo: %s, topic: %s\n", clientInfo, topic);
     }
 
 	@Override
-    public void on_session_resumed(ClientInfo clientInfo) {
-        System.err.printf("[Java] on_session_resumed: clientinfo: %s\n", clientInfo);
+    public void onSessionResumed(ClientInfo clientInfo) {
+        System.err.printf("[Java] onSessionResumed: clientinfo: %s\n", clientInfo);
     }
 
 	@Override
-    public void on_session_discarded(ClientInfo clientInfo) {
-        System.err.printf("[Java] on_session_discarded: clientinfo: %s\n", clientInfo);
+    public void onSessionDiscarded(ClientInfo clientInfo) {
+        System.err.printf("[Java] onSessionDiscarded: clientinfo: %s\n", clientInfo);
     }
 	
 	@Override
-    public void on_session_takeovered(ClientInfo clientInfo) {
-        System.err.printf("[Java] on_session_takeovered: clientinfo: %s\n", clientInfo);
+    public void onSessionTakeovered(ClientInfo clientInfo) {
+        System.err.printf("[Java] onSessionTakeovered: clientinfo: %s\n", clientInfo);
     }
 
 	@Override
-    public void on_session_terminated(ClientInfo clientInfo, Reason reason) {
-        System.err.printf("[Java] on_session_terminated: clientinfo: %s, reason: %s\n", clientInfo, reason);
+    public void onSessionTerminated(ClientInfo clientInfo, Reason reason) {
+        System.err.printf("[Java] onSessionTerminated: clientinfo: %s, reason: %s\n", clientInfo, reason);
     }
 
     // Messages
 	@Override
-    public Message on_message_publish(Message message) {
-        System.err.printf("[Java] on_message_publish: message: %s\n", message);
+    public Message onMessagePublish(Message message) {
+        System.err.printf("[Java] onMessagePublish: message: %s\n", message);
         
         return message;
     }
-
+	
 	@Override
-    public void on_message_dropped(Message message, Reason reason) {
-        System.err.printf("[Java] on_message_dropped: message: %s, reason: %s\n", message, reason);
+    public void onMessageDropped(Message message, Reason reason) {
+        System.err.printf("[Java] onMessageDropped: message: %s, reason: %s\n", message, reason);
     }
 
 	@Override
-    public void on_message_delivered(ClientInfo clientInfo, Message message) {
+    public void onMessageDelivered(ClientInfo clientInfo, Message message) {
         System.err.printf("[Java] on_message_delivered: clientinfo: %s, message: %s\n", clientInfo, message);
     }
 
 	@Override
-    public void on_message_acked(ClientInfo clientInfo, Message message) {
-        System.err.printf("[Java] on_message_acked: clientinfo: %s, message: %s\n", clientInfo, message);
+    public void onMessageAcked(ClientInfo clientInfo, Message message) {
+        System.err.printf("[Java] onMessageAcked: clientinfo: %s, message: %s\n", clientInfo, message);
     }
 
 }
