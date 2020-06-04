@@ -79,6 +79,7 @@ public class DefaultCommunicationHandler implements CommunicationHandler {
 		Initializer.Bootstrap bootstrap = new Initializer.Bootstrap(actions, state);
 		Initializer result = new Initializer(bootstrap);
 		
+//		System.err.printf(result.encode(ResultCode.SUC).toString());
 		return result.encode(ResultCode.SUC);
 	}
 
@@ -504,12 +505,15 @@ public class DefaultCommunicationHandler implements CommunicationHandler {
     
 	private HookSpec addHookSpec(List<HookSpec> actions, String module, String hookName, ActionOption... actionOpts) {
 
+		String oldFunction = "on_" + hookName;
 		String function = "on" + toCamelCase(hookName);
 		String cb = function + "Raw";
 
 		//only add those callback functions which are actually declared in the sub class
 		if (!declaredMethods.contains(function)) {
-			return null;
+			if (!declaredMethods.contains(oldFunction)) {
+				return null;
+			}
 		}
 		
 		if (actionOpts == null || actionOpts.length == 0) {

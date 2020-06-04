@@ -30,7 +30,7 @@ public class SampleHandler extends DefaultCommunicationHandler {
     public void onClientConnect(ConnInfo connInfo, Property[] props) {
         System.err.printf("[Java] onClientConnect: connInfo: %s, props: %s\n", connInfo, props);
     }
-
+	
 	@Override
     public void onClientConnack(ConnInfo connInfo, ReturnCode rc, Property[] props) {
         System.err.printf("[Java] onClientConnack: connInfo: %s, rc: %s, props: %s\n", connInfo, rc, props);
@@ -113,7 +113,7 @@ public class SampleHandler extends DefaultCommunicationHandler {
         
         return message;
     }
-
+	
 	@Override
     public void onMessageDropped(Message message, Reason reason) {
         System.err.printf("[Java] onMessageDropped: message: %s, reason: %s\n", message, reason);
