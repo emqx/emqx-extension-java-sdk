@@ -15,6 +15,8 @@ This repostory provide a Java SDK based on [emqx-extension-hook](https://github.
 4. Copy the `examples/SampleHandler.java` into your project.
 5. Successfully compile all the source codes.
 
+Note: NOT read/write `System.out.*` and `System.in` Stream. They are used to communicate with EMQ X.
+
 ## Deploy
 
 After compiled all source codes, you should deploy the `sdk` and your class files into EMQ X.
