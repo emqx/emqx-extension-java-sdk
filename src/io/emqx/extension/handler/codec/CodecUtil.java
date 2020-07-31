@@ -1,12 +1,12 @@
 package io.emqx.extension.handler.codec;
 
-import erlport.terms.Atom;
-import erlport.terms.Binary;
+import com.erlport.erlang.term.Atom;
+import com.erlport.erlang.term.Binary;
 
 public class CodecUtil {
 	
 	public static String atom2String(Object object) {
-		return ((Atom) object).value;
+        return ((Atom) object).value;
 	}
 	
 	public static byte[] binary2ByteArray(Object object) {

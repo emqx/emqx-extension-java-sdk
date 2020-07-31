@@ -1,9 +1,10 @@
 package io.emqx.extension.handler.codec;
 
+import com.erlport.erlang.term.Tuple;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import erlport.terms.Tuple;
 
 // The Hook specific
 public class HookSpec implements Tupleable {

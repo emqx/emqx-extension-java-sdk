@@ -1,29 +1,14 @@
 package io.emqx.extension.handler;
 
+import com.erlport.erlang.term.Tuple;
+import io.emqx.extension.exceptions.InvalidParameterException;
+import io.emqx.extension.handler.codec.*;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import io.emqx.extension.exceptions.InvalidParameterException;
-import io.emqx.extension.handler.codec.ActionOption;
-import io.emqx.extension.handler.codec.ClientInfo;
-import io.emqx.extension.handler.codec.ConnInfo;
-import io.emqx.extension.handler.codec.Decoder;
-import io.emqx.extension.handler.codec.HookSpec;
-import io.emqx.extension.handler.codec.Initializer;
-import io.emqx.extension.handler.codec.Message;
-import io.emqx.extension.handler.codec.Property;
-import io.emqx.extension.handler.codec.PubSub;
-import io.emqx.extension.handler.codec.Reason;
-import io.emqx.extension.handler.codec.ResultCode;
-import io.emqx.extension.handler.codec.ReturnCode;
-import io.emqx.extension.handler.codec.State;
-import io.emqx.extension.handler.codec.SubscribeOption;
-import io.emqx.extension.handler.codec.Topic;
-import io.emqx.extension.handler.codec.TopicFilter;
-import erlport.terms.Tuple;
 
 public class DefaultCommunicationHandler implements CommunicationHandler {
 	
