@@ -1,10 +1,10 @@
 package io.emqx.extension.handler;
 
+import io.emqx.extension.handler.codec.ActionOption;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
-import io.emqx.extension.handler.codec.ActionOption;
 
 public final class ActionOptionConfig {
 	

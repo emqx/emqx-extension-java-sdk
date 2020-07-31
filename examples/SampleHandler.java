@@ -1,16 +1,7 @@
 import io.emqx.extension.handler.ActionOptionConfig;
 import io.emqx.extension.handler.ActionOptionConfig.Keys;
 import io.emqx.extension.handler.DefaultCommunicationHandler;
-import io.emqx.extension.handler.codec.ClientInfo;
-import io.emqx.extension.handler.codec.ConnInfo;
-import io.emqx.extension.handler.codec.Message;
-import io.emqx.extension.handler.codec.Property;
-import io.emqx.extension.handler.codec.PubSub;
-import io.emqx.extension.handler.codec.Reason;
-import io.emqx.extension.handler.codec.ReturnCode;
-import io.emqx.extension.handler.codec.SubscribeOption;
-import io.emqx.extension.handler.codec.Topic;
-import io.emqx.extension.handler.codec.TopicFilter;
+import io.emqx.extension.handler.codec.*;
 
 public class SampleHandler extends DefaultCommunicationHandler {
 	

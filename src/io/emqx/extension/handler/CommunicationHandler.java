@@ -2,8 +2,8 @@ package io.emqx.extension.handler;
 
 public interface CommunicationHandler {
 	
-	public Object init();
+	 Object init();
 	
-	public void deinit();
+	 void deinit();
 
 }
