@@ -8,8 +8,11 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.emqx.extension.exceptions.InvalidParameterException;
+import com.erlport.erlang.term.Tuple;
+
 public class Decoder {
-	
+
 	public <T extends HandlerParameter> List<T> decodeList(Class<T> clazz, Object listObj) throws InvalidParameterException {
 		if (!(listObj instanceof List)) {
 			String error = MessageFormat.format("Invalid List project: {0}", listObj);
@@ -17,13 +20,13 @@ public class Decoder {
 		}
 		List<?> list = (List<?>)listObj;
 		List<T> result = new ArrayList<>();
-		for (int i=0; i<list.size(); i++) {
-			T param = decode(clazz, list.get(i));
+		for (Object o : list) {
+			T param = decode(clazz, o);
 			result.add(param);
 		}
 		return result;
 	}
-	
+
 	public <T extends HandlerParameter> T decode(Class<T> clazz, Object paramObj) throws InvalidParameterException {
 		if (clazz.equals(ConnInfo.class)) {
 			return clazz.cast(decodeConnInfo(paramObj));
@@ -55,10 +58,10 @@ public class Decoder {
 		if (clazz.equals(TopicFilter.class)) {
 			return clazz.cast(decodeTopicFilter(paramObj));
 		}
-		
+
 		return null;
 	}
-	
+
 	private ConnInfo decodeConnInfo(Object paramObj) throws InvalidParameterException {
 		String node = null;			// Atom
 		String clientId = null;		// Binary
@@ -68,14 +71,14 @@ public class Decoder {
 		String protoName = null;	// Binary
 		int protoVersion = -1;		// int
 		int keepalive = -1;			// int
-		
+
 		try {
 			List<Tuple> contents = (List<Tuple>)paramObj;
 			if (contents.size() != 8) {
 				String error = MessageFormat.format("Invalid ConnInfo: {0}", paramObj);
 				throw new InvalidParameterException(error);
 			}
-			
+
 			for (Tuple tuple : contents) {
 				String key = CodecUtil.atom2String(tuple.get(0));
 				switch (key) {
@@ -105,15 +108,15 @@ public class Decoder {
 					break;
 				}
 			}
-			
+
 			return new ConnInfo(node, clientId, userName, peerHost, sockPort, protoName, protoVersion, keepalive);
-			
+
 		} catch (Exception e) {
 			String error = MessageFormat.format("Invalid ConnInfo: {0}", paramObj);
 			throw new InvalidParameterException(error);
 		}
 	}
-	
+
 	private ClientInfo decodeClientInfo(Object paramObj) throws InvalidParameterException {
 		String node = null;			// Atom
 		String clientId = null;		// Binary
@@ -125,14 +128,14 @@ public class Decoder {
 		String mountPoint = null;	// Binary
 		Boolean isSuperUser = null;	// boolean
 		Boolean anonymous = null;	// boolean
-		
+
 		try {
 			List<Tuple> contents = (List<Tuple>)paramObj;
 			if (contents.size() != 10) {
 				String error = MessageFormat.format("Invalid ClientInfo: {0}", paramObj);
 				throw new InvalidParameterException(error);
 			}
-			
+
 			for (Tuple tuple : contents) {
 				String key = CodecUtil.atom2String(tuple.get(0));
 				switch (key) {
@@ -168,15 +171,15 @@ public class Decoder {
 					break;
 				}
 			}
-			
-			return new ClientInfo(node, clientId, userName, password, peerHost, sockPort, 
-					protocol, mountPoint, isSuperUser, anonymous);
+
+			return new ClientInfo(node, clientId, userName, password, peerHost, sockPort,
+					              protocol, mountPoint, isSuperUser, anonymous);
 		} catch (Exception e) {
 			String error = MessageFormat.format("Invalid ClientInfo: {0}", paramObj);
 			throw new InvalidParameterException(error);
 		}
 	}
-	
+
 	private Message decodeMessage(Object paramObj) throws InvalidParameterException {
 		String node = null;		// Atom
 		String id = null;		// Binary
@@ -185,7 +188,7 @@ public class Decoder {
 		String topic = null;	// Binary
 		byte[] payload = null;	// Binary
 		long timestamp = -1;
-		
+
 		try {
 			List<Tuple> contents = (List<Tuple>)paramObj;
 			if (contents.size() != 7) {
@@ -363,5 +366,4 @@ public class Decoder {
 		List<Object> list = new ArrayList<Object>();
 		List<Property> props = decoder.decodeList(Property.class, list);
 	}
-	
 }

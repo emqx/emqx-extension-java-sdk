@@ -5,6 +5,7 @@ import com.erlport.erlang.term.Tuple;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.erlport.erlang.term.Tuple;
 
 // {0 | 1, [{HookName, CallModule, CallFunction, Opts}]}
 public class Initializer implements HandlerReturn {

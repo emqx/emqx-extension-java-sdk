@@ -5,6 +5,7 @@ import com.erlport.erlang.term.Tuple;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.erlport.erlang.term.Tuple;
 
 // The Hook specific
 public class HookSpec implements Tupleable {
@@ -44,5 +45,4 @@ public class HookSpec implements Tupleable {
 		
 		return tuple;
 	}
-	
 }
