@@ -1,13 +1,12 @@
 package io.emqx.extension.handler.codec;
 
 import java.math.BigInteger;
-import java.nio.ByteBuffer;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import io.emqx.extension.exceptions.InvalidParameterException;
-import erlport.terms.Tuple;
+import com.erlport.erlang.term.Tuple;
 
 public class Decoder {
 	
@@ -18,8 +17,8 @@ public class Decoder {
 		}
 		List<?> list = (List<?>)listObj;
 		List<T> result = new ArrayList<>();
-		for (int i=0; i<list.size(); i++) {
-			T param = decode(clazz, list.get(i));
+		for (Object o : list) {
+			T param = decode(clazz, o);
 			result.add(param);
 		}
 		return result;

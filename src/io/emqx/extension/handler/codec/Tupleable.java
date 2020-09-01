@@ -1,6 +1,6 @@
 package io.emqx.extension.handler.codec;
 
-import erlport.terms.Tuple;
+import com.erlport.erlang.term.Tuple;
 
 public interface Tupleable {
 	

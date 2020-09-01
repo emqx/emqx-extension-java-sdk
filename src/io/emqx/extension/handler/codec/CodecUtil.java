@@ -1,7 +1,7 @@
 package io.emqx.extension.handler.codec;
 
-import erlport.terms.Atom;
-import erlport.terms.Binary;
+import com.erlport.erlang.term.Atom;
+import com.erlport.erlang.term.Binary;
 
 public class CodecUtil {
 	

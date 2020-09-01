@@ -23,7 +23,7 @@ import io.emqx.extension.handler.codec.State;
 import io.emqx.extension.handler.codec.SubscribeOption;
 import io.emqx.extension.handler.codec.Topic;
 import io.emqx.extension.handler.codec.TopicFilter;
-import erlport.terms.Tuple;
+import com.erlport.erlang.term.Tuple;
 
 public class DefaultCommunicationHandler implements CommunicationHandler {
 	

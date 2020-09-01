@@ -3,9 +3,9 @@ package io.emqx.extension.handler.codec;
 import java.util.ArrayList;
 import java.util.List;
 
-import erlport.terms.Atom;
-import erlport.terms.Binary;
-import erlport.terms.Tuple;
+import com.erlport.erlang.term.Atom;
+import com.erlport.erlang.term.Binary;
+import com.erlport.erlang.term.Tuple;
 
 public class ActionOption implements Tupleable {
 	
