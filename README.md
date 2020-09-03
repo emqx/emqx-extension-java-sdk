@@ -10,7 +10,7 @@ This repostory provide a Java SDK based on [emqx-extension-hook](https://github.
 ## Get Started
 
 1. First of all, create your Java project.
-2. Download the [io.emqx.extension.jar](https://github.com/emqx/emqx-extension-java-sdk/releases) and [erlport.jar](https://github.com/emqx/emqx-extension-java-sdk/blob/master/deps/erlport-v1.2.2.jar)
+2. Download the [io.emqx.extension.jar](https://github.com/emqx/emqx-extension-java-sdk/releases/tag/v4.2.0) and [erlport.jar](https://github.com/emqx/emqx-extension-java-sdk/blob/v4.2.0/deps/erlport-v1.2.2.jar)
 3. Add the sdk: `io.emqx.extension.jar` and `erlport.jar` to your project dependency.
 4. Copy the `examples/SampleHandler.java` into your project.
 5. Successfully compile all the source codes.
@@ -42,6 +42,6 @@ See: examples/SampleHandler.java
 
 Apache License v2
 
-## Autor
+## Authors
 
 - [Chong Yuan](https://github.com/chongyuanyin)
