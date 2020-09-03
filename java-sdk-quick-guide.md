@@ -8,11 +8,11 @@
 
 2. 在 IDE 中创建 Java 项目，将 `io.emqx.extension.jar` 及 `erlport.jar` 作为依赖引入该项目。
 
-下载依赖：[io.emqx.extension.jar & erlport.jar](https://github.com/emqx/emqx-extension-hook/blob/master/sdk/emqx-extension-java-sdk/rel/)
+下载依赖：[io.emqx.extension.jar](https://github.com/emqx/emqx-extension-java-sdk/releases/tag/v4.2.0) & [erlport.jar](https://github.com/emqx/emqx-extension-java-sdk/blob/v4.2.0/deps/erlport-v1.2.2.jar)
 
 ## 示例
 
-我们提供了 [SampleHandler.java](https://github.com/emqx/emqx-extension-hook/blob/master/test/scripts/SampleHandler.java) 示例程序，
+我们提供了 [SampleHandler.java](https://github.com/emqx/emqx-extension-java-sdk/blob/v4.2.0/examples/SampleHandler.java) 示例程序，
 该程序继承自 SDK 中的 `DefaultCommunicationHandler` 类。该示例代码演示了如何挂载 EMQ X 系统中所有的钩子：
 
 ``` java
@@ -199,4 +199,6 @@ public interface CommunicationHandler {
 
 ## 特别说明
 
-标准输入输出流System.in和System.out用于EMQ X系统内部的交互，请不要在扩展程序中使用。目前可以使用System.err进行控制台打印。
+标准输入输出流 System.in 和 System.out 用于 EMQ X 系统内部的交互，请不要在扩展程序中使用
+
+目前可以使用 System.err 将 Java 侧的日志打印到 EMQ X 的控制台。
