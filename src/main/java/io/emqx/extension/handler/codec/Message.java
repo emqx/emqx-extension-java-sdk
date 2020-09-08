@@ -8,10 +8,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.erlport.erlang.term.Atom;
-import com.erlport.erlang.term.Binary;
-import com.erlport.erlang.term.Tuple;
-
 public class Message implements HandlerParameter, HandlerReturn {
 	
 	public String node;
