@@ -8,9 +8,6 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.emqx.extension.exceptions.InvalidParameterException;
-import com.erlport.erlang.term.Tuple;
-
 public class Decoder {
 
 	public <T extends HandlerParameter> List<T> decodeList(Class<T> clazz, Object listObj) throws InvalidParameterException {
