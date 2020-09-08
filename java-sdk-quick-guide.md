@@ -8,7 +8,37 @@
 
 2. 在 IDE 中创建 Java 项目，将 `io.emqx.extension.jar` 及 `erlport.jar` 作为依赖引入该项目。
 
-下载依赖：[io.emqx.extension.jar](https://github.com/emqx/emqx-extension-java-sdk/releases/tag/v4.2.0) & [erlport.jar](https://github.com/emqx/emqx-extension-java-sdk/blob/v4.2.0/deps/erlport-v1.2.2.jar)
+## 下载依赖
+
+### SDK  `io.emqx.extension.jar` 
+
+驱动版本选择参考[README.md](https://github.com/emqx/emqx-extension-java-sdk/blob/master/README.md)   ``SDK edition & EMQ X Broker edition``章节。
+
+#### 1 直接下载jar
+
+进入[下载页面](https://search.maven.org/search?q=a:emqx-extension-java-sdk) ，选择与您正在使用的EMQ X Broker版本对应的驱动。
+
+#### 2 使用maven引入`io.emqx.extension.jar`
+
+打开maven项目的pom.xml文件，在`<dependencies></dependencies>`标签内，添加记录：
+
+```xml
+<dependency>
+  <groupId>io.emqx</groupId>
+  <artifactId>emqx-extension-java-sdk</artifactId>
+  <!-- 
+			版本选择请按照部署的EMQ X Broker版本选择，版本对应请参考
+			https://github.com/emqx/emqx-extension-java-sdk/blob/master/README.md
+			的 SDK edition & EMQ X Broker edition 章节，
+			此处的版本号<version>1.0.0</version>仅作为示例
+ -->
+  <version>1.0.0</version>
+</dependency>
+```
+
+### SDK依赖下载 `erlport.jar`
+
+使用[下载链接](https://github.com/emqx/emqx-extension-java-sdk/raw/master/deps/erlport-v1.2.2.jar)下载
 
 ## 示例
 
