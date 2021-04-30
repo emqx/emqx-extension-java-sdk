@@ -292,7 +292,7 @@ public class Decoder {
 		
 		try {
 			List<Tuple> contents = (List<Tuple>)paramObj;
-			if (contents.size() != 5) {
+			if (contents.size() != 6) {
 				String error = MessageFormat.format("Invalid SubscribeOption: {0}", paramObj);
 				throw new InvalidParameterException(error);
 			}
